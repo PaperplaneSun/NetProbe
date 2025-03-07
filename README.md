@@ -34,10 +34,10 @@ sudo ./ping_program <Target IP> <Probe Sequence Length> <Packet Frequency> <Mode
 - \<**Signal File Source**\>:
     - **Mode 1**: Provide the path to the signal file, where each line contains a binary value (1 or 0).This mode is specifically designed to facilitate debugging, allowing the use of predefined signal files for controlled testing and reproducibility of experiments.
         - **Note**: Total packet count must be less than or equal to the number of lines in the signal file. If the packet count exceeds the file length, it may cause issues.
-    - **Mode 2**: Provide a string in the format n{nbits}s{initseed}.
-        - `nbits`: Defines the bit length of the signal sequence, with the sequence length being $2^{nbits} - 1$.
+    - **Mode 2**: Provide a string in the format `n{nbits}s{initseed}`.
+        - `nbits`: Defines the bit length of the signal sequence, with the sequence length being $ 2^{nbits} - 1 $.
         - `initseed`: The initial seed for the MLS sequence generation. The same seed will generate the same signal sequence.
-        - **Example**: `n10s12`, which generates a signal sequence of length 1023 with an initial seed of 12 (should not exceed $2^{nbits} - 1$).
+        - **Example**: `n10s12`, which generates a signal sequence of length 1023 with an initial seed of 12 (should not exceed $ 2^{nbits} - 1 $).
         - In this mode, the <Sequence Probe Length> should match the length of the generated signal.
 - \<**Host Identifier**\>: Identifier for the host, used to distinguish different devices.
     - --active：Active mode. Sends ICMP requests and records data.
@@ -45,10 +45,13 @@ sudo ./ping_program <Target IP> <Probe Sequence Length> <Packet Frequency> <Mode
 
 ### Example Workflow
 1. **Copy NetProbe to Alice and Bob's machines**
+   
    Transfer NetProbe to both Alice and Bob's machines to set up the experiment environment.
 2. **Compile the code on Alice and Bob's machines**
+   
    Follow the compilation instructions to compile the source code on both machines.
 3. **Run the experiment on Alice and Bob**
+   
    Bob (Listener) IP: `10.9.130.72`  
    - **Using a predefined signal file**：
     ```bash
@@ -68,8 +71,10 @@ sudo ./ping_program <Target IP> <Probe Sequence Length> <Packet Frequency> <Mode
     sudo ./ping_program 10.9.130.72 1023 1000 2 n10s12 A --active
     ```
 4. **Data Collection**
+   
    The experiment results will be stored in the `/data` directory. Each experiment dataset is saved in a folder named in the format: `{experiment_sequence}_{packet_count}_{signal_file}_{probe_frequency}_{host_label}` 
 5. **Frequency Analysis & Key Generation**
+   
    The collected RTT measurements will be used for frequency domain analysis to extract spectral features and perform key generation.
 
 # License
